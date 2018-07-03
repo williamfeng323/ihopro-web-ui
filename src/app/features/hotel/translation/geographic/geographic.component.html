@@ -1,0 +1,77 @@
+<div class="geo-list">
+  <h2 class="feature-heading text-center">GEOGRAPHY LIST</h2>
+  <div class="alert-bar" *ngIf="!!message" >
+    <ngb-alert [type]="message.type" (close)="closeAlert()">{{message.message}}</ngb-alert>
+  </div>
+  <div class="m-auto col-md-11 row">
+    <div class="col-md-10">
+      <label>Country Code</label>
+      <input #countryCode type="text" placeholder="Country Code">
+      <label>City Code</label>
+      <input #cityCode type="text" placeholder="City Code">
+      <button class="btn btn-primary" (click)="clickSearch(countryCode.value, cityCode.value)">Search</button>
+    </div>
+    <div class="col-md-2 btn btn-dark create-geo-btn float-right" (click)="addGeo()" >new geo</div>
+  </div>
+  <div *ngIf="geoList;else loading">
+
+    <table class="m-auto table table-hover table-responsive items">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Country Code</th>
+        <th>Country Name EN</th>
+        <th>Country Name ZH</th>
+        <th>City Code</th>
+        <th>City Name EN</th>
+        <th>City Name ZH</th>
+        <th class="text-center">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let geo of geoList; let i = index" ngbTooltip="Double Click to Edit" placement="right">
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.countryCode" disabled>
+        </td>
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.countryNameEn" disabled>
+        </td>
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.countryNameZh" disabled>
+        </td>
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.cityCode" disabled>
+        </td>
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.cityNameEn" disabled>
+        </td>
+        <td (dblclick)="editGeo($event.target)">
+          <input [(ngModel)]="geo.cityNameZh" disabled>
+        </td>
+        <td class="text-center">
+          <img class="img-button" (click)="submit(geo, $event.target)" src="/assets/img/hook.png">
+          <img class="img-button" (click)="delete(geo, $event.target, i)" src="/assets/img/cross.png">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <div class="row">
+        <ngb-pagination class="" [pageSize]="perPage" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true" (pageChange)="getPageContent()"></ngb-pagination>
+        <div class="per-page-setting">
+          <input [(ngModel)]="perPage">
+          <div class="btn" (click)="getPageContent()">Per Page</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <ng-template #loading>
+    <div class="loading">
+      <svg class="loading-icon" version="1.1"
+           xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"
+           viewBox="0 0 1024 1024">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1s" repeatCount="indefinite"></animateTransform>
+        <image xlink:href="assets/img/loading.svg" style="width:100%;"></image>
+      </svg>
+    </div>
+  </ng-template>
+</div>

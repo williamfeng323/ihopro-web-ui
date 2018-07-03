@@ -1,0 +1,17 @@
+.hotel-form {
+  padding:60px;
+}
+.room-list {
+  padding: 60px;
+}
+.inner-loading {
+  position: relative;
+  padding-top: 0px;
+  left: 50%;
+  .loading-icon {
+    height: 80px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+}

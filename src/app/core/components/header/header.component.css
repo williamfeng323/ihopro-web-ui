@@ -1,0 +1,10 @@
+.login-tag{
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+}
+.warning-message {
+  position: absolute;
+  margin-top: -26px;
+  color: red;
+}

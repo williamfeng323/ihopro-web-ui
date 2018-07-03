@@ -1,0 +1,22 @@
+<div class="align-items-center home-area">
+  <div class="row" *ngIf="!current_user;else loginHome">
+    <form class="login-form col-md-4" [formGroup]="loginForm" (submit)="onSubmit()">
+      <div class="input-control">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" class="form-control" placeholder="Email address" required="" autofocus="" formControlName="email">
+        <div *ngIf="form_submitted && loginForm.get('email').errors" class="alert">Invalid Email Address</div>
+      </div>
+      <div class="input-control">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" required="" formControlName="password">
+        <div *ngIf="form_submitted && loginForm.get('password').errors" class="alert">Invalid Password</div>
+      </div>
+      <span *ngIf="message" class="warning-message" >{{message}}</span>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </div>
+  <ng-template #loginHome>
+    <h3 class="text-center">Hi, {{current_user.username || current_user.email}}, your last login is
+      {{ current_user.last_login_at }}</h3>
+  </ng-template>
+</div>

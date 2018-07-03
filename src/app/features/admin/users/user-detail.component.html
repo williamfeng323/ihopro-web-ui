@@ -1,0 +1,44 @@
+
+<h3 class="text-center feature-heading">
+  Modify User
+</h3>
+<div class="modify-user">
+  <div class="alert-bar" *ngIf="!!message" >
+    <ngb-alert [type]="message.type" (close)="closeAlert()">{{message.message}}</ngb-alert>
+  </div>
+  <div class="user-form row" *ngIf="user;else loading">
+    <form class="form-user col-md-4" [formGroup]="userForm" (submit)="onSubmit()">
+      <div class="input-control">
+        <label for="username" class="sr-only">Email address</label>
+        <input type="username" id="username" class="form-control" [(ngModel)]="user.username" placeholder="name" required="" autofocus="" formControlName="username">
+        <div *ngIf="form_submitted && userForm.get('username').errors" class="alert">Invalid Email Address</div>
+      </div>
+      <div class="input-control">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="user.email" placeholder="email" required="" autofocus="" formControlName="email">
+        <div *ngIf="form_submitted && userForm.get('email').errors" class="alert">Invalid Email Address</div>
+      </div>
+      <div class="input-control">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="password" required="" formControlName="password" (ngModel)="user.password">
+        <div *ngIf="form_submitted && userForm.get('password').errors" class="alert">Invalid Password Address</div>
+      </div>
+      <div class="input-control">
+        <label for="roles" class="sr-only">roles</label>
+        <ss-multiselect-dropdown id='roles' [options]="rolesOptions" [texts]='dropDownTexts' [settings]="dropDownSettings" formControlName="roles" [(ngModel)]="user.roles"></ss-multiselect-dropdown>
+      </div>
+      <button class="btn btn-lg btn-primary col-md-5 float-left " type="submit">Update</button>
+      <button class="btn btn-lg btn-secondary col-md-5 float-right" (click)="gotoUsers()">Cancel</button>
+    </form>
+  </div>
+  <ng-template #loading>
+    <div class="loading">
+      <svg class="loading-icon" version="1.1"
+           xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"
+           viewBox="0 0 1024 1024">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1s" repeatCount="indefinite"></animateTransform>
+        <image xlink:href="assets/img/loading.svg" style="width:100%;"></image>
+      </svg>
+    </div>
+  </ng-template>
+</div>

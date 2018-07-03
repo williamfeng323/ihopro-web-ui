@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+.input-control {
+  margin-bottom:30px;
+  .alert{
+      color: red;
+      position: absolute;
+      padding:0;
+    }
+}
+a {
+  cursor: pointer;
+}
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+.feature-heading {
+  padding: 80px 0 50px 0;
+}
+.hide {
+  display: none;
+}
+.btn {
+  cursor: pointer;
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  .loading-icon {
+    height: 80px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+}

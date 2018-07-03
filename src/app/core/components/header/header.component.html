@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" routerLink="/home">GTA - Internal Tools</a>
+  <a class="navbar-brand admin-link" routerLink="/admin" checkPermission >
+    ADMIN
+  </a>
+  <a class="navbar-brand admin-link" routerLink="/hotel" checkPermission accepted_roles="Sales">
+    HOTEL
+  </a>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <app-login-modal-component class="login-tag">
+    </app-login-modal-component>
+  </div>
+</nav>

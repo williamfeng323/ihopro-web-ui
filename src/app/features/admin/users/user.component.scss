@@ -1,0 +1,44 @@
+h2 {
+  text-align: center;
+}
+.user-list{
+  margin: auto;
+  .selected {
+    color: mediumpurple;
+  }
+  .create-user-btn {
+    cursor: pointer;
+    float: right;
+  }
+}
+.items {
+  tr {
+    cursor: pointer;
+    position: relative;
+    left: 0px;
+    background-color: rgb(238, 238, 238);
+    height: 1.6em;
+    margin: 0.5em;
+    padding: 0.3em 0px;
+    border-radius: 4px;
+  }
+}
+.modify-user{
+  text-align: center;
+  margin-top: 30px;
+  padding: 00px 80px 80px 80px;
+  .alert-bar {
+    margin: auto;
+    max-width: 33%;
+    display: grid;
+  }
+  .user-form {
+    .form-user {
+      margin: auto;
+    }
+  }
+}
+.loading {
+  top:250px;
+  left:47%;
+}

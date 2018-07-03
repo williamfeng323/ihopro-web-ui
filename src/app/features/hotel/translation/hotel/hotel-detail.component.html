@@ -1,0 +1,90 @@
+<h3 class="text-center feature-heading">
+  Modify Hotel
+</h3>
+<div class="modify-hotel">
+  <div class="alert-bar" *ngIf="!!message" >
+    <ngb-alert [type]="message.type" (close)="closeAlert()">{{message.message}}</ngb-alert>
+  </div>
+  <div *ngIf="hotel;else loading" class="row">
+    <div class="hotel-form col-md-5">
+      <h5>Hotel Information</h5>
+      <form class="form-hotel " [formGroup]="hotelForm" (submit)="onSubmit()">
+        <div formGroupName="geography">
+          <div class="input-control" (dblclick)="editGeo($event.target)">
+            <label for="countryCode" >Country Code</label>
+            <input type="text" id="countryCode" class="form-control"
+                   placeholder="Country Code" formControlName="countryCode"
+                   ngbTooltip="Double Click to Edit"
+            >
+            <div *ngIf="formIsSubmitted && hotelForm.get('countryCode').errors" class="alert">
+              {{hotelForm.get('countryCode').errors}}
+            </div>
+          </div>
+          <div class="input-control" (dblclick)="editGeo($event.target)">
+            <label for="cityCode" >City Code</label>
+            <input type="text" id="cityCode" class="form-control"
+                   placeholder="City Code" formControlName="cityCode"
+                   ngbTooltip="Double Click to Edit"
+            >
+            <div *ngIf="formIsSubmitted && hotelForm.get('cityCode').errors" class="alert">
+              {{hotelForm.get('cityCode').errors}}
+            </div>
+          </div>
+        </div>
+        <div class="input-control">
+          <label for="hotelCode" >Hotel Code</label>
+          <input type="text" id="hotelCode" class="form-control"
+                 placeholder="Hotel Code" formControlName="hotelCode">
+          <div *ngIf="formIsSubmitted && hotelForm.get('hotelCode').errors" class="alert">
+            {{hotelForm.get('hotelCode').errors}}
+          </div>
+        </div>
+        <div class="input-control">
+          <label for="hotelNameEn" >Hotel Name En</label>
+          <input type="text" id="hotelNameEn" class="form-control"
+                 placeholder="Hotel Name En" formControlName="hotelNameEn">
+        </div>
+        <div class="input-control">
+          <label for="hotelNameZh" >Hotel Name Zh</label>
+          <input type="text" id="hotelNameZh" class="form-control" placeholder="Hotel Name Zh"
+                 formControlName="hotelNameZh">
+        </div>
+        <div class="input-control">
+          <label for="phone" >Phone Number</label>
+          <input type="text" id="phone" class="form-control" placeholder="Phone Number"
+                 formControlName="phone">
+        </div>
+        <div class="input-control">
+          <label for="fax" >Fax Number</label>
+          <input type="text" id="fax" class="form-control" placeholder="Fax Number"
+                 formControlName="fax">
+        </div>
+        <div class="input-control" formArrayName="addressLine">
+          <div *ngFor="let address of addressLine.controls; let i=index">
+            <label for="i">Address Line {{i+1}}</label>
+            <input type="text" id="i" class="form-control"
+                   [formControlName]="i">
+          </div>
+        </div>
+        <div class="col-md-6 float-left">
+          <button class="btn btn-lg btn-primary col-md-5 float-left " type="submit">Update</button>
+          <button class="btn btn-lg btn-primary col-md-5 float-right" (click)="ngOnInit()">Revert</button>
+        </div>
+        <button class="btn btn-lg btn-secondary col-md-4 float-right" (click)="backToList()">Cancel</button>
+      </form>
+    </div>
+    <div class="room-list col-md-7">
+      <app-hotel-room-list [hotel]="hotel"></app-hotel-room-list>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="loading">
+      <svg class="loading-icon" version="1.1"
+           xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink"
+           viewBox="0 0 1024 1024">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1s" repeatCount="indefinite"></animateTransform>
+        <image xlink:href="assets/img/loading.svg" style="width:100%;"></image>
+      </svg>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,31 @@
+.items {
+  max-width: 90%;
+  tr {
+    cursor: pointer;
+    position: relative;
+    left: 0px;
+    background-color: rgb(238, 238, 238);
+    height: 1.6em;
+    margin: 0.5em;
+    padding: 0.3em 0px;
+    border-radius: 4px;
+    td {
+      .img-button {
+        width: 20px;
+        border: dashed lightgray;
+      }
+    }
+  }
+}
+.loading {
+  padding-top:180px;
+}
+.pagination {
+  padding: 15px 5%;
+  .per-page-setting {
+    margin: 4px 10px;
+    input {
+      width: 45px;
+    }
+  }
+}

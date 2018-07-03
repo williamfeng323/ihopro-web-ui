@@ -1,0 +1,31 @@
+<div class="register">
+  <h3 class="feature-heading">
+    Register
+  </h3>
+  <div class="register-form row">
+    <form class="form-user col-md-4" [formGroup]="userForm" (submit)="onSubmit()">
+      <div class="input-control">
+        <label for="username" class="sr-only">Email address</label>
+        <input type="username" id="username" class="form-control" placeholder="User Name" required="" autofocus="" formControlName="username">
+        <div *ngIf="form_submitted && userForm.get('username').errors" class="alert">Invalid Email Address</div>
+      </div>
+      <div class="input-control">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" class="form-control" placeholder="Email address" required="" autofocus="" formControlName="email">
+        <div *ngIf="form_submitted && userForm.get('email').errors" class="alert">Invalid Email Address</div>
+      </div>
+      <div class="input-control">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" required="" formControlName="password">
+        <div *ngIf="form_submitted && userForm.get('password').errors" class="alert">Invalid Password Address</div>
+      </div>
+      <div class="input-control">
+        <label for="roles" class="sr-only">roles</label>
+        <ss-multiselect-dropdown id='roles' [options]="rolesOptions" [texts]='dropDownTexts' [settings]="dropDownSettings" formControlName="roles"></ss-multiselect-dropdown>
+      </div>
+      <span *ngIf="message" class="warning-message" >{{message}}</span>
+      <button class="btn btn-lg btn-primary col-md-5 float-left " type="submit">Register</button>
+      <button class="btn btn-lg btn-secondary col-md-5 float-right" routerLink="../users">Cancel</button>
+    </form>
+  </div>
+</div>

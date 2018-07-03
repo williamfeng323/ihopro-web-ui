@@ -1,0 +1,49 @@
+<h3 class="text-center feature-heading">HOTEL</h3>
+<div id="hotel-home" class="row">
+  <a class="ml-md-auto col-md-3 col-xs-12 text-center" (click)="expandPanel($event)"
+     [attr.aria-expanded]="!isCollapsed" aria-controls="collapsed-component" href>
+    <svg class="hotel-icon" version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+      <image xlink:href="assets/img/hotel.svg"/>
+    </svg>
+    <h5>Translation Management</h5>
+  </a>
+  <div id="collapsed-component" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body text-center">
+        <a routerLink="translation/fileUpload">
+          <svg class="hotel-sub-icon" version="1.1"
+               xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+            <image xlink:href="assets/img/batch_details.svg" class="hotel-sub-img"/>
+          </svg>
+          <p>Translation File Upload</p>
+        </a>
+      </div>
+      <div class="card-body text-center">
+        <a routerLink="translation/geoTranslation">
+          <svg class="hotel-sub-icon"  version="1.1"
+               xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+            <image xlink:href="assets/img/globe.svg" class="hotel-sub-img"/>
+          </svg>
+          <p>Geo Translation</p>
+        </a>
+      </div>
+      <div class="card-body text-center">
+        <a routerLink="translation/hotelTranslation">
+          <svg class="hotel-sub-icon"  version="1.1"
+               xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+            <image xlink:href="assets/img/details.svg" class="hotel-sub-img"/>
+          </svg>
+          <p>Hotel Translation</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a class="mr-md-auto col-md-3 col-xs-12 text-center" routerLink="roles">
+    <svg class="hotel-icon"  version="1.1"
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+      <image xlink:href="assets/img/hotel_white.svg"/>
+    </svg>
+    <h5>Hotel Management</h5>
+  </a>
+</div>

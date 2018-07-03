@@ -1,0 +1,79 @@
+<h3 class="text-center feature-heading"> Translation Excel Uploader</h3>
+<div class="alert-bar" *ngIf="!!message" >
+  <ngb-alert [type]="message.type" (close)="closeAlert()">{{message.message}}</ngb-alert>
+</div>
+<div class="upload-component">
+  <div *ngIf="running_task?.taskId;else uploadArea">
+    <div class="process-progress">
+      <h5 class="text-center">File Process Progress -- {{running_task.taskInfo?.status}}</h5>
+      <p class="col-md-10 m-auto">
+        <ngb-progressbar type="warning" [value]="(running_task.taskInfo?.current/running_task.taskInfo?.total)*100"
+                         [striped]="true" [animated]="true">
+          <i>{{(running_task.taskInfo?.current/running_task.taskInfo?.total)*100 | number }}%</i>
+        </ngb-progressbar>
+      </p>
+    </div>
+  </div>
+  <ng-template #uploadArea>
+    <div class="row">
+      <div class="col-md-4 m-auto">
+        <div ng2FileDrop
+             [ngClass]="{'nv-file-over': hasDropZoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="my-drop-zone">
+          Drop zone
+        </div>
+        <div>
+          <input type="file" ng2FileSelect [uploader]="uploader">
+        </div>
+      </div>
+      <div class="col-md-6 m-auto">
+        <h3>Upload queue</h3>
+        <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th width="50%">Name</th>
+            <th>Size</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of uploader.queue">
+            <td><strong>{{ item?.file?.name }}</strong></td>
+            <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+            <td>
+              <div class="progress" style="margin-bottom: 0;">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+              </div>
+            </td>
+            <td class="text-center">
+              <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+              <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+              <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+              <button type="button" class="btn btn-success btn-xs"
+                      (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                <span class="glyphicon glyphicon-upload"></span> Upload
+              </button>
+              <button type="button" class="btn btn-warning btn-xs"
+                      (click)="item.cancel()" [disabled]="!item.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+              </button>
+              <button type="button" class="btn btn-danger btn-xs"
+                      (click)="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Remove
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Login</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form-signin" [formGroup]="loginForm" (submit)="onSubmit()">
+    <div class="input-control">
+      <label for="email" class="sr-only">Email address</label>
+      <input type="email" id="email" class="form-control" placeholder="Email address" required="" autofocus="" formControlName="email">
+      <div *ngIf="form_submitted && loginForm.get('email').errors" class="alert">Invalid Email Address</div>
+    </div>
+    <div class="input-control">
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Password" required="" formControlName="password">
+      <div *ngIf="form_submitted && loginForm.get('password').errors" class="alert">Invalid Password Address</div>
+    </div>
+    <span *ngIf="message" class="warning-message" >{{message}}</span>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
